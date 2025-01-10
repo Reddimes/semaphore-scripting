@@ -1,0 +1,9 @@
+---
+- name: Update CS-K8S
+  hosts: CS-K8S
+  tasks:
+  - name: Update and Upgrade apt packages
+    become: true
+    ansible.builtin.apt:
+      upgrade: yes
+      update_cache: yes
