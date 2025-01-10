@@ -12,6 +12,7 @@
     block:
       - name: Drain Host
         become: true
+        become_method: su
         ansible.builtin.shell: kubectl drain $(hostname|tr '[:upper:]' '[:lower:]') --ignore-daemonsets
       - name: Reboot Host
         become: true
