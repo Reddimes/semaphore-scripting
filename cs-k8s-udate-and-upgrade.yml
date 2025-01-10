@@ -35,9 +35,9 @@
         until: kubeletDetails.status.ActiveState == "active"
         retries: 15
         delay: 20
-      - name: Sleep until it is shutdown
+      - name: Sleep for a bit
         ansible.builtin.pause:
-          seconds: 10
+          seconds: 30
       - name: Uncordon Host
         become: true
         become_method: community.general.sudosu
