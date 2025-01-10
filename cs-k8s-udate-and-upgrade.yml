@@ -27,6 +27,14 @@
           sleep: 5
           delay: 5
           timeout: 300
+      - name: Wait until kubelet is active
+        service:
+          name: kubelet
+          state: started
+        register: kubeletDetails
+        until: kubeletDetails.status.ActiveState == "active"
+        retries: 15
+        delay: 20
       - name: Uncordon Host
         become: true
         become_method: community.general.sudosu
