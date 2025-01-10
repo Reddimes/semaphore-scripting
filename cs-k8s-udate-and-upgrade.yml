@@ -26,4 +26,5 @@
           timeout: 300
       - name: Uncordon Host
         become: true
+        become_method: community.general.sudosu
         ansible.builtin.shell: kubectl uncordon $(hostname|tr '[:upper:]' '[:lower:]')
