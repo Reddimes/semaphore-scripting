@@ -1,6 +1,7 @@
 ---
 - name: Update and Upgrade CS-K8S
   hosts: CS-K8S
+  serial: 1
   tasks:
   - name: Update and Upgrade apt packages
     become: true
@@ -8,7 +9,6 @@
       upgrade: yes
       update_cache: yes
   - name: Drain each host, reboot, and uncordon
-    throttle: 1
     block:
       - name: Drain Host
         become: true
