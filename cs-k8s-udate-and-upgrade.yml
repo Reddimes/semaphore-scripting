@@ -18,9 +18,9 @@
         become: true
         ansible.builtin.reboot:
           reboot_timeout: 3600
-      - name: Sleep until it is shutdown
-        ansible.builtin.pause:
-          seconds: 5
+      # - name: Sleep until it is shutdown
+      #   ansible.builtin.pause:
+      #     seconds: 5
       - name: Wait for Connection
         wait_for_connection:
           connect_timeout: 10
@@ -35,6 +35,9 @@
         until: kubeletDetails.status.ActiveState == "active"
         retries: 15
         delay: 20
+      - name: Sleep until it is shutdown
+        ansible.builtin.pause:
+          seconds: 10
       - name: Uncordon Host
         become: true
         become_method: community.general.sudosu
