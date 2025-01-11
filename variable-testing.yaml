@@ -4,7 +4,9 @@
   tasks:
     - name: Collect Hostname
       ansible.builtin.shell: "hostname|tr '[:upper:]' '[:lower:]'"
-      register: hostnames
-      with_items:
-        - "{{ hostnames }}"
-        
+      register: hostname
+    - name: Print hostname
+      ansible.builtin.debug:
+        msg: hostname.stdout
+
+
