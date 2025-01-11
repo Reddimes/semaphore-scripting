@@ -7,6 +7,6 @@
       register: hostname
     - name: Print hostname
       ansible.builtin.debug:
-        msg: hostname.stdout
+        msg: "{{ hostname.stdout }}"
 
 
