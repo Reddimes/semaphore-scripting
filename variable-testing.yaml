@@ -2,9 +2,9 @@
   hosts: CS-K8S
   serial: 1
   tasks:
-    - name: Add Hostname
+    - name: Collect Hostname
       ansible.builtin.shell: "hostname|tr '[:upper:]' '[:lower:]'"
       register: hostnames
-    - name: Print Hostnames
-      ansible.builtin.debug:
-        msg: "{{ hostnames.stdout }}"
+      with_items:
+        - "{{ hostnames }}"
+        
