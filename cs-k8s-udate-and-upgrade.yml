@@ -9,14 +9,11 @@
       update_cache: yes
 
 - name: Drain each host, reboot, and uncordon
-  serial: 1
+  hosts: CS-K8S-control-1944d743be3
   tasks:
-    - name: Subtask
-      hosts: CS-K8S
-      block:
-        - name: Print Hostname
-          ansible.builtin.debug:
-            msg: "{{inventory_hostname}}"
+    - name: Print Hostname
+      ansible.builtin.debug:
+        msg: "{{inventory_hostname}}"
   # tasks:
   #   - name: Drain Host
   #     become: true
