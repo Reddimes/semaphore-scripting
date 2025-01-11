@@ -6,6 +6,7 @@
       register: hostnames
 
 - name: Print Hostnames
+  hosts: localhost
   tasks:
     - name: Print Hostnames
       ansible.builtin.debug:
