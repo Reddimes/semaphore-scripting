@@ -10,10 +10,10 @@
 
 - name: Drain each host, reboot, and uncordon
   serial: 1
-  block:
+  tasks:
     - name: Subtask
       hosts: CS-K8S
-      tasks:
+      block:
         - name: Print Hostname
           ansible.builtin.debug:
             msg: "{{inventory_hostname}}"
