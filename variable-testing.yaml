@@ -10,4 +10,4 @@
   tasks:
     - name: Print Hostnames
       ansible.builtin.debug:
-        msg: "{{ hostnames }}"
+        msg: "{{ hostnames.stdout }}"
