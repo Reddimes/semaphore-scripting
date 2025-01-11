@@ -7,8 +7,9 @@
     ansible.builtin.apt:
       upgrade: yes
       update_cache: yes
+
 - name: Drain each host, reboot, and uncordon
-  host: CS-K8S
+  hosts: CS-K8S
   serial: 1
   block:
     - name: Drain Host
