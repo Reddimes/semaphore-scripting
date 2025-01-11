@@ -8,6 +8,7 @@
   #       hostnames: "{{ hostnames + ansible_hostname }}"
 
 - name: Print Hostnames
+  hosts: CS-K8S
   tasks:
     - name: Print Hostnames
       ansible.builtin.debug:
