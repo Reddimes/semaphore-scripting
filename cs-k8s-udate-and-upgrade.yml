@@ -8,12 +8,12 @@
       upgrade: yes
       update_cache: yes
 
-- name: Drain each host, reboot, and uncordon
-  hosts: CS-K8S-control-1944d743be3
-  tasks:
-    - name: Print Hostname
-      ansible.builtin.debug:
-        msg: "{{ansible_facts}}"
+# - name: Drain each host, reboot, and uncordon
+#   hosts: CS-K8S-control-1944d743be3
+#   tasks:
+#     - name: Print Hostname
+#       ansible.builtin.debug:
+#         var: "{{ansible_facts}}"
   # tasks:
   #   - name: Drain Host
   #     become: true
