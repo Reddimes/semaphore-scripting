@@ -1,5 +1,5 @@
 vars:
-  hostnames:
+  hostnames
 
 - name: Get hostnames
   hosts: CS-K8S
