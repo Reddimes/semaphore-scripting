@@ -4,10 +4,6 @@
     - name: Add Hostname
       ansible.builtin.shell: "hostname|tr '[:upper:]' '[:lower:]'"
       register: hostnames
-
-  - name: Print Hostnames
-    # hosts: localhost
-    tasks:
-      - name: Print Hostnames
-        ansible.builtin.debug:
-          msg: "{{ hostnames.stdout }}"
+    - name: Print Hostnames
+      ansible.builtin.debug:
+        msg: "{{ hostnames.stdout }}"
