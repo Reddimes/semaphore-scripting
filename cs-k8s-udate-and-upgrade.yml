@@ -11,36 +11,38 @@
 - name: Drain each host, reboot, and uncordon
   hosts: CS-K8S
   serial: 1
-  tasks:
-    - name: Drain Host
-      become: true
-      become_method: community.general.sudosu
-      ansible.builtin.shell: kubectl drain $(hostname|tr '[:upper:]' '[:lower:]') --ignore-daemonsets
-    - name: Reboot Host
-      become: true
-      ansible.builtin.reboot:
-        reboot_timeout: 3600
-    - name: Wait for Connection
-      wait_for_connection:
-        connect_timeout: 10
-        sleep: 5
-        delay: 5
-        timeout: 300
-    - name: Wait until kubelet is active
-      service:
-        name: kubelet
-        state: started
-      register: kubeletDetails
-      until: kubeletDetails.status.ActiveState == "active"
-      retries: 15
-      delay: 20
-    - name: Sleep for a bit
-      ansible.builtin.pause:
-        seconds: 30
-    - name: Uncordon Host
-      become: true
-      become_method: community.general.sudosu
-      ansible.builtin.shell: kubectl uncordon $(hostname|tr '[:upper:]' '[:lower:]')
-    - name: Sleep for a bit
-      ansible.builtin.pause:
-        seconds: 30
+  ansible.builtin.debug:
+    msg: "{{inventory_hostname}}"
+  # tasks:
+  #   - name: Drain Host
+  #     become: true
+  #     become_method: community.general.sudosu
+  #     ansible.builtin.shell: kubectl drain $(hostname|tr '[:upper:]' '[:lower:]') --ignore-daemonsets
+  #   - name: Reboot Host
+  #     become: true
+  #     ansible.builtin.reboot:
+  #       reboot_timeout: 3600
+  #   - name: Wait for Connection
+  #     wait_for_connection:
+  #       connect_timeout: 10
+  #       sleep: 5
+  #       delay: 5
+  #       timeout: 300
+  #   - name: Wait until kubelet is active
+  #     service:
+  #       name: kubelet
+  #       state: started
+  #     register: kubeletDetails
+  #     until: kubeletDetails.status.ActiveState == "active"
+  #     retries: 15
+  #     delay: 20
+  #   - name: Sleep for a bit
+  #     ansible.builtin.pause:
+  #       seconds: 30
+  #   - name: Uncordon Host
+  #     become: true
+  #     become_method: community.general.sudosu
+  #     ansible.builtin.shell: kubectl uncordon $(hostname|tr '[:upper:]' '[:lower:]')
+  #   - name: Sleep for a bit
+  #     ansible.builtin.pause:
+  #       seconds: 30
