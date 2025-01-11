@@ -1,11 +1,11 @@
 - name: Get hostnames
   hosts: CS-K8S
   vars:
-    hostnames: []
-  tasks:
-    - name: Add Hostname
-      ansible.builtin.debug:
-        hostnames: "{{ hostnames + ansible_hostname }}"
+    hostnames: ansible_hostname
+  # tasks:
+  #   - name: Add Hostname
+  #     ansible.builtin.debug:
+  #       hostnames: "{{ hostnames + ansible_hostname }}"
 
 - name: Print Hostnames
   tasks:
