@@ -11,7 +11,7 @@
 - name: Drain each host, reboot, and uncordon
   hosts: CS-K8S
   serial: 1
-  block:
+  tasks:
     - name: Drain Host
       become: true
       become_method: community.general.sudosu
