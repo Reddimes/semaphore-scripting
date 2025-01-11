@@ -10,7 +10,7 @@
 
 - name: Drain each host, reboot, and uncordon
   serial: 1
-  tasks:
+  block:
     - name: Subtask
       hosts: CS-K8S
       tasks:
