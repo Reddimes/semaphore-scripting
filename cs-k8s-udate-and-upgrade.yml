@@ -4,11 +4,11 @@
   tasks:
   - name: Update apt packages
     become: true
-    become_user: root
+    become_method: community.general.sudosu
     ansible.builtin.apt:
       update_cache: yes
   - name: Upgrade apt packages
     become: true
-    become_user: root
+    become_method: community.general.sudosu
     ansible.builtin.apt:
       upgrade: yes
