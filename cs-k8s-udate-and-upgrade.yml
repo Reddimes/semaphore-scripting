@@ -2,8 +2,11 @@
 - name: Update and Upgrade CS-K8S
   hosts: CS-K8S
   tasks:
-  - name: Update and Upgrade apt packages
+  - name: Update apt packages
+    become: true
+    ansible.builtin.apt:
+      update_cache: yes
+  - name: Upgrade apt packages
     become: true
     ansible.builtin.apt:
       upgrade: yes
-      update_cache: yes
