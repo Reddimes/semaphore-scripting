@@ -1,14 +1,11 @@
 ---
 - name: Update and Upgrade CS-K8S
   hosts: CS-K8S
+  become: true
   tasks:
   - name: Update apt packages
-    become: true
-    become_method: community.general.sudosu
     ansible.builtin.apt:
       update_cache: yes
   - name: Upgrade apt packages
-    become: true
-    become_method: community.general.sudosu
     ansible.builtin.apt:
       upgrade: yes
