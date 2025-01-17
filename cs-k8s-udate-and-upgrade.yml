@@ -4,9 +4,11 @@
   tasks:
   - name: Update apt packages
     become: true
+    become_user: root
     ansible.builtin.apt:
       update_cache: yes
   - name: Upgrade apt packages
     become: true
+    become_user: root
     ansible.builtin.apt:
       upgrade: yes
