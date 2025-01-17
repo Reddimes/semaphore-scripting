@@ -3,6 +3,14 @@
   hosts: CS-K8S
   become: true
   tasks:
+  - name: Check Lock File
+    stat:
+      path: /var/lib/apt/lists/lock
+    register: stat_result
+  - name: Manually update apt if it doesn't exist
+    ansible.builtin.shell:
+      cmd: apt update
+    when: not stat_result.stat.exists
   - name: Update apt packages
     ansible.builtin.apt:
       update_cache: yes
